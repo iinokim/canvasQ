@@ -31,16 +31,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CallbackController 
-extends AbstractServlet {
-	private static final String CALLBACK_RESOURCE = "/sdk/callback.html";
+public class CallbackController
+        extends AbstractServlet {
+    private static final String CALLBACK_RESOURCE = "/sdk/callback.html";
 
     private static final long serialVersionUID = -7540328539834469665L;
 
-	@Override
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-		forward(CALLBACK_RESOURCE,request,response);
+        System.out.println("CallbackController  ON!!! ");
+        forward(CALLBACK_RESOURCE, request, response);
     }
 
 }
