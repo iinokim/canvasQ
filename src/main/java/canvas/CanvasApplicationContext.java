@@ -31,7 +31,7 @@ import java.util.List;
 /**
  * Describes meta-data about the canvas connected app
  */
-@org.codehaus.jackson.annotate.JsonIgnoreProperties(ignoreUnknown=true)
+@org.codehaus.jackson.annotate.JsonIgnoreProperties(ignoreUnknown = true)
 public class CanvasApplicationContext {
 
     private String namespace;
@@ -47,6 +47,7 @@ public class CanvasApplicationContext {
 
     /**
      * Developer org's unique namespace. Can be null.
+     * 
      * @return namespace
      */
     @org.codehaus.jackson.annotate.JsonProperty("namespace")
@@ -61,6 +62,7 @@ public class CanvasApplicationContext {
 
     /**
      * Developer name of the app. Note this is not the same as the application name.
+     * 
      * @return developerName
      */
     @org.codehaus.jackson.annotate.JsonProperty("developerName")
@@ -74,7 +76,8 @@ public class CanvasApplicationContext {
     }
 
     /**
-     * Name of the application.  
+     * Name of the application.
+     * 
      * @return name
      */
     @org.codehaus.jackson.annotate.JsonProperty("name")
@@ -89,6 +92,7 @@ public class CanvasApplicationContext {
 
     /**
      * Fully qualified canvas URL. Example: https://somedomain.com/canvas.html
+     * 
      * @return canvasUrl
      */
     @org.codehaus.jackson.annotate.JsonProperty("canvasUrl")
@@ -103,6 +107,7 @@ public class CanvasApplicationContext {
 
     /**
      * The connected app's application Id.
+     * 
      * @return applicationId
      */
     @org.codehaus.jackson.annotate.JsonProperty("applicationId")
@@ -117,6 +122,7 @@ public class CanvasApplicationContext {
 
     /**
      * The version of the connected app
+     * 
      * @return version information example: "1.0"
      */
     @org.codehaus.jackson.annotate.JsonProperty("version")
@@ -131,6 +137,7 @@ public class CanvasApplicationContext {
 
     /**
      * The authType of connected app. Valid values "signed_request" or "oauth".
+     * 
      * @return authType
      */
     @org.codehaus.jackson.annotate.JsonProperty("authType")
@@ -157,12 +164,13 @@ public class CanvasApplicationContext {
     }
 
     /**
-     * Returns a list of options that have been selected. Example: HideHeader, HideShare
+     * Returns a list of options that have been selected. Example: HideHeader,
+     * HideShare
      * these are used to suppress the header and footer in the publisher.
      */
     @org.codehaus.jackson.annotate.JsonProperty("options")
     public List<String> getOptions() {
-        if (null == this.options){
+        if (null == this.options) {
             this.options = new ArrayList<String>(0);
         }
         return this.options;
@@ -175,6 +183,7 @@ public class CanvasApplicationContext {
 
     /**
      * Property indicating what SAML initiation method was selected if any.
+     * 
      * @return null, "IdpInitiated" or "SpInitiated"
      */
     @org.codehaus.jackson.annotate.JsonProperty("samlInitiationMethod")
@@ -187,17 +196,16 @@ public class CanvasApplicationContext {
         this.samlInitiationMethod = samlInitiationMethod;
     }
 
-
     @Override
-    public String toString()
-    {
-        return namespace+ ","+
-               developerName+ ","+
-               applicationId+ ","+
-               version+ ","+
-               authType+ ","+
-               referenceId + "," +
-               canvasUrl + "," +
-               samlInitiationMethod;
+    public String toString() {
+        System.out.println("class CanvasApplicationContext  toString ON!!! ");
+        return namespace + "," +
+                developerName + "," +
+                applicationId + "," +
+                version + "," +
+                authType + "," +
+                referenceId + "," +
+                canvasUrl + "," +
+                samlInitiationMethod;
     }
 }

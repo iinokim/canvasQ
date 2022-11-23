@@ -44,7 +44,7 @@ import java.net.URLEncoder;
 
 /**
  * A Servlet for handeling OAuth flow.
- * This OAuth Servlet  is only provided as an example and is provided as-is
+ * This OAuth Servlet is only provided as an example and is provided as-is
  */
 public class OAuthServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -52,20 +52,20 @@ public class OAuthServlet extends HttpServlet {
     public static final String ACCESS_TOKEN = "ACCESS_TOKEN";
     public static final String INSTANCE_URL = "INSTANCE_URL";
 
-    private String clientId     = null;
+    private String clientId = null;
     private String clientSecret = null;
-    private String redirectUri  = null;
-    private String authUrl      = null;
-    private String tokenUrl     = null;
+    private String redirectUri = null;
+    private String authUrl = null;
+    private String tokenUrl = null;
 
     public void init() throws ServletException {
-
+        System.out.println("OAuthServlet init  ON!!! ");
         String environment;
 
         clientId = this.getInitParameter("clientId");
         clientSecret = this.getInitParameter("clientSecret");
-        redirectUri = this.getInitParameter("redirectUri");    // https://canvas.herokuapp.com/oauth/_callback
-        environment = this.getInitParameter("environment");    // https://login.salesforce.com
+        redirectUri = this.getInitParameter("redirectUri"); // https://canvas.herokuapp.com/oauth/_callback
+        environment = this.getInitParameter("environment"); // https://login.salesforce.com
 
         try {
             authUrl = environment
@@ -82,8 +82,9 @@ public class OAuthServlet extends HttpServlet {
         tokenUrl = environment + "/services/oauth2/token";
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        System.out.println("OAuthServlet doGet  ON!!! ");
         System.out.println("Begin OAuth");
 
         String accessToken = (String) request.getSession().getAttribute(ACCESS_TOKEN);
@@ -133,8 +134,7 @@ public class OAuthServlet extends HttpServlet {
                 } catch (HttpException e) {
                     e.printStackTrace();
                     throw new ServletException(e);
-                }
-                finally {
+                } finally {
                     post.releaseConnection();
                 }
             }

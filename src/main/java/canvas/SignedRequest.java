@@ -45,21 +45,25 @@ import org.codehaus.jackson.type.TypeReference;
 
 /**
  *
- * The utility method can be used to validate/verify the signed request. In this case,
- * the signed request is verified that it is from Salesforce and that it has not been tampered with.
+ * The utility method can be used to validate/verify the signed request. In this
+ * case,
+ * the signed request is verified that it is from Salesforce and that it has not
+ * been tampered with.
  * <p>
- * This utility class has two methods. One verifies and decodes the request as a Java object the
+ * This utility class has two methods. One verifies and decodes the request as a
+ * Java object the
  * other as a JSON String.
  *
  */
 public class SignedRequest {
-    
-    // Pattern used to escape single quotes so that the browser can parse the json string
+
+    // Pattern used to escape single quotes so that the browser can parse the json
+    // string
     // (i.e. John O'leary).
     private static final Pattern SINGLE_QUOTE_PATTERN = Pattern.compile("'");
 
     public static CanvasRequest verifyAndDecode(String input, String secret) throws SecurityException {
-
+        System.out.println("SignedRequest :: CanvasRequest verifyAndDecode   ON!!! ");
         String[] split = getParts(input);
 
         String encodedSig = split[0];
@@ -75,7 +79,8 @@ public class SignedRequest {
             canvasRequest = reader.readValue(json_envelope);
             algorithm = canvasRequest.getAlgorithm() == null ? "HMACSHA256" : canvasRequest.getAlgorithm();
         } catch (IOException e) {
-            throw new SecurityException(String.format("Error [%s] deserializing JSON to Object [%s]", e.getMessage(), CanvasRequest.class.getName()), e);
+            throw new SecurityException(String.format("Error [%s] deserializing JSON to Object [%s]", e.getMessage(),
+                    CanvasRequest.class.getName()), e);
         }
 
         verify(secret, algorithm, encodedEnvelope, encodedSig);
@@ -84,23 +89,23 @@ public class SignedRequest {
         // return the request as a Java object
         return canvasRequest;
     }
-    
-    public static String toString(CanvasRequest canvasRequest){
-    	String rv = null;
-    	if (null != canvasRequest){
+
+    public static String toString(CanvasRequest canvasRequest) {
+        String rv = null;
+        if (null != canvasRequest) {
             ObjectMapper mapper = new ObjectMapper();
             StringWriter writer;
             writer = new StringWriter();
             try {
-	            mapper.writeValue(writer, canvasRequest);
-	            rv = SINGLE_QUOTE_PATTERN.matcher(writer.toString()).replaceAll("\\\\'");
+                mapper.writeValue(writer, canvasRequest);
+                rv = SINGLE_QUOTE_PATTERN.matcher(writer.toString()).replaceAll("\\\\'");
             } catch (Exception e) {
-            	throw new RuntimeException(e);
+                throw new RuntimeException(e);
             }
-    	}
-    	return rv;
+        }
+        return rv;
     }
-    
+
     public static String verifyAndDecodeAsJson(String input, String secret) throws SecurityException {
 
         String[] split = getParts(input);
@@ -113,13 +118,13 @@ public class SignedRequest {
 
         String algorithm;
         StringWriter writer;
-        TypeReference<HashMap<String,Object>> typeRef
-                = new TypeReference<HashMap<String, Object>>() { };
+        TypeReference<HashMap<String, Object>> typeRef = new TypeReference<HashMap<String, Object>>() {
+        };
         try {
-            HashMap<String,Object> o = mapper.readValue(json_envelope, typeRef);
+            HashMap<String, Object> o = mapper.readValue(json_envelope, typeRef);
             writer = new StringWriter();
             mapper.writeValue(writer, o);
-            algorithm = (String)o.get("algorithm");
+            algorithm = (String) o.get("algorithm");
         } catch (IOException e) {
             throw new SecurityException(String.format("Error [%s] deserializing JSON to Object [%s]", e.getMessage(),
                     typeRef.getClass().getName()), e);
@@ -142,11 +147,11 @@ public class SignedRequest {
         return split;
     }
 
-    private static void verify(String secret, String algorithm, String encodedEnvelope, String encodedSig )
-        throws SecurityException
-    {
-    	if (secret == null || secret.trim().length() == 0) {
-            throw new IllegalArgumentException("secret is null, did you set your environment variable CANVAS_CONSUMER_SECRET?");
+    private static void verify(String secret, String algorithm, String encodedEnvelope, String encodedSig)
+            throws SecurityException {
+        if (secret == null || secret.trim().length() == 0) {
+            throw new IllegalArgumentException(
+                    "secret is null, did you set your environment variable CANVAS_CONSUMER_SECRET?");
         }
 
         SecretKey hmacKey = null;
@@ -159,12 +164,13 @@ public class SignedRequest {
             // Check to see if the body was tampered with
             byte[] digest = mac.doFinal(encodedEnvelope.getBytes());
             byte[] decode_sig = new Base64(true).decode(encodedSig);
-            if (! Arrays.equals(digest, decode_sig)) {
+            if (!Arrays.equals(digest, decode_sig)) {
                 String label = "Warning: Request was tampered with";
                 throw new SecurityException(label);
             }
         } catch (NoSuchAlgorithmException e) {
-            throw new SecurityException(String.format("Problem with algorithm [%s] Error [%s]", algorithm, e.getMessage()), e);
+            throw new SecurityException(
+                    String.format("Problem with algorithm [%s] Error [%s]", algorithm, e.getMessage()), e);
         } catch (InvalidKeyException e) {
             throw new SecurityException(String.format("Problem with key [%s] Error [%s]", hmacKey, e.getMessage()), e);
         }

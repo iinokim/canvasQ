@@ -33,7 +33,7 @@ package canvas;
  * on the canvas application. Some/all items may be null if the oauth scope is
  * not set accordingly.
  */
-@org.codehaus.jackson.annotate.JsonIgnoreProperties(ignoreUnknown=true)
+@org.codehaus.jackson.annotate.JsonIgnoreProperties(ignoreUnknown = true)
 public class CanvasContext {
     private CanvasUserContext userContext = null;
     private CanvasOrganizationContext orgContext = null;
@@ -45,58 +45,56 @@ public class CanvasContext {
      * Provides the context about the current user.
      * 
      * @return The current user context, or null if the oauth scope
-     * will not allow.
+     *         will not allow.
      */
     @org.codehaus.jackson.annotate.JsonProperty("user")
     public CanvasUserContext getUserContext() {
         return this.userContext;
-    }    
-    
+    }
+
     /**
      * Sets the context about the current user.
      */
     @org.codehaus.jackson.annotate.JsonProperty("user")
-    public void setUserContext(CanvasUserContext userContext)
-    {
+    public void setUserContext(CanvasUserContext userContext) {
         this.userContext = userContext;
     }
-    
+
     /**
      * Provides the context about the current organization.
      * 
      * @return The current organization context, or null if the oauth scope
-     * will not allow.
+     *         will not allow.
      */
     @org.codehaus.jackson.annotate.JsonProperty("organization")
     public CanvasOrganizationContext getOrganizationContext() {
         return orgContext;
-    }    
-    
+    }
+
     /**
      * Sets the context about the current organization.
      */
-    @org.codehaus.jackson.annotate.JsonProperty("organization") 
-    public void setOrganizationContext(CanvasOrganizationContext orgContext)
-    {
+    @org.codehaus.jackson.annotate.JsonProperty("organization")
+    public void setOrganizationContext(CanvasOrganizationContext orgContext) {
         this.orgContext = orgContext;
     }
-    
+
     /**
      * Provides the context about the current environment (page, url, etc).
      */
     @org.codehaus.jackson.annotate.JsonProperty("environment")
     public CanvasEnvironmentContext getEnvironmentContext() {
-        if (null == this.envContext){
+        if (null == this.envContext) {
             return new CanvasEnvironmentContext();
         }
         return envContext;
     }
-    
+
     @org.codehaus.jackson.annotate.JsonProperty("environment")
-    public void setEnvironmentContext(CanvasEnvironmentContext envContext){
+    public void setEnvironmentContext(CanvasEnvironmentContext envContext) {
         this.envContext = envContext;
     }
-    
+
     /**
      * Provides links to external resources within sfdc.
      */
@@ -104,14 +102,14 @@ public class CanvasContext {
     public CanvasLinkContext getLinkContext() {
         return linkContext;
     }
-    
+
     /**
      * Sets the link context for this request.
+     * 
      * @param linkContext
      */
     @org.codehaus.jackson.annotate.JsonProperty("links")
-    public void setLinkContext(CanvasLinkContext linkContext)
-    {
+    public void setLinkContext(CanvasLinkContext linkContext) {
         this.linkContext = linkContext;
     }
 
@@ -125,6 +123,7 @@ public class CanvasContext {
 
     /**
      * Sets the application context for this request.
+     * 
      * @param appContext
      */
     @org.codehaus.jackson.annotate.JsonProperty("application")
@@ -133,18 +132,18 @@ public class CanvasContext {
     }
 
     @Override
-    public String toString()
-    {
-        return String.format("Canvas Context:\n\t" + 
-                             "User Context:\n\t\t%s\n\t"+
-                             "Org Context:\n\t\t%s\n\t"+
-                             "Environment Context:\n\t\t%s\n\t"+
-                             "Link Context:\n\t\t%s\n"+
-                             "App Context:\n\t\t%s\n",
-                             null != userContext?userContext.toString():"null",
-                             null != orgContext?orgContext.toString():"null",
-                             null != envContext?envContext.toString():"null",
-                             null != linkContext?linkContext.toString():"null",
-                             null != appContext?appContext.toString():"null");
+    public String toString() {
+        System.out.println("class CanvasContext  toString ON!!! ");
+        return String.format("Canvas Context:\n\t" +
+                "User Context:\n\t\t%s\n\t" +
+                "Org Context:\n\t\t%s\n\t" +
+                "Environment Context:\n\t\t%s\n\t" +
+                "Link Context:\n\t\t%s\n" +
+                "App Context:\n\t\t%s\n",
+                null != userContext ? userContext.toString() : "null",
+                null != orgContext ? orgContext.toString() : "null",
+                null != envContext ? envContext.toString() : "null",
+                null != linkContext ? linkContext.toString() : "null",
+                null != appContext ? appContext.toString() : "null");
     }
 }
