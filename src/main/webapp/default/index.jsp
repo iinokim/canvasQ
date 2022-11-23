@@ -40,7 +40,12 @@ POSSIBILITY OF SUCH DAMAGE.
     <script>
         function resetSize(newDimensions) {
         	var options = newDimensions ? newDimensions : {};
-            console.log("resize.");
+            console.log("==================resize.==============");
+            console.log(sr);
+            console.log(sr.client)
+            console.log(Sfdc.canvas)
+            console.log(Sfdc.canvas.client)
+            console.log("==================resize END==============");
             Sfdc.canvas.client.resize(sr.client,  {
             	width : options.width?options.width:"600px", 
       			height : options.height?options.height:"600px"
