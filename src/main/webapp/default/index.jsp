@@ -67,7 +67,7 @@ POSSIBILITY OF SUCH DAMAGE.
         <div id="header">
             <h1>Hello <span id='fullname'>${canvasRequest.context.userContext.fullName}</span>!</h1>
             <h2>Welcome to the Force.com Canvas Java Quick Start Template!</h2>
-            <h4>${canvasRequestJson}</h4>
+            
 
         </div>
 
@@ -101,9 +101,8 @@ POSSIBILITY OF SUCH DAMAGE.
                 <p>Powered By: <a title="Heroku" href="#" onclick="window.top.location.href='http://www.heroku.com'"><strong>Heroku</strong></a>
                 </p>
             </div>
-            <div id="footerright">
-                <p>Salesforce: <a title="Safe Harbor" href="http://www.salesforce.com/company/investor/safe_harbor.jsp"><strong>SafeHarbor</strong></a>
-                </p>
+            <div id="footerright" style="overflow:scroll">
+                <h4>${canvasRequestJson}</h4>
             </div>
         </div>
     </div>
