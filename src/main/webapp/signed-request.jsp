@@ -56,6 +56,9 @@ POSSIBILITY OF SUCH DAMAGE.
 
             Sfdc.canvas(function() {
                 var sr = JSON.parse('<%=signedRequestJson%>');
+                console.log('<%=signedRequestJson%>')
+                console.log('=============sr=============================');
+                console.log(sr);
                 var photoUri = sr.context.user.profileThumbnailUrl +  "?oauth_token=" + sr.client.oauthToken;
                 /**
                  * Check if we are in sites/communities.  If so, derive the url accordingly.
