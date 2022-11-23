@@ -97,13 +97,14 @@ POSSIBILITY OF SUCH DAMAGE.
             <jsp:include page="api.jsp"/>
         </div>
         <div id="footercont">
+            <div id="footerright" style="overflow:scroll">
+                <h4>${canvasRequestJson}</h4>
+            </div>
             <div id="footerleft">
                 <p>Powered By: <a title="Heroku" href="#" onclick="window.top.location.href='http://www.heroku.com'"><strong>Heroku</strong></a>
                 </p>
             </div>
-            <div id="footerright" style="overflow:scroll">
-                <h4>${canvasRequestJson}</h4>
-            </div>
+
         </div>
     </div>
 </body>
