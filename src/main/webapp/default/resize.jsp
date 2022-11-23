@@ -43,6 +43,7 @@ POSSIBILITY OF SUCH DAMAGE.
         displaySize();
     }
     console.log("데이터뿌리기");
+    console.log(sr )
     Sfdc.canvas.byId('bodyparsee').innerHTML =  sr;
 
 

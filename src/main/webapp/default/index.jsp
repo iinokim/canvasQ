@@ -67,6 +67,8 @@ POSSIBILITY OF SUCH DAMAGE.
         <div id="header">
             <h1>Hello <span id='fullname'>${canvasRequest.context.userContext.fullName}</span>!</h1>
             <h2>Welcome to the Force.com Canvas Java Quick Start Template!</h2>
+            <h4>${canvasRequestJson}</h4>
+
         </div>
 
         <div class="tab-box">
