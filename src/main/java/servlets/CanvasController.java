@@ -69,7 +69,6 @@ public class CanvasController extends AbstractServlet {
 	@Override
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
 		String srString = request.getParameter(SIGNED_REQUEST_PARAM);
 		String authStatus = request.getParameter(SFDC_CANVAS_AUTH);
 		String consumerKey = System.getenv("CANVAS_CONSUMER_KEY");

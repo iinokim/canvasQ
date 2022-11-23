@@ -68,14 +68,15 @@ POSSIBILITY OF SUCH DAMAGE.
                 if (siteHost.lastIndexOf("/") == siteHost.length-1){
                 	siteHost = siteHost.substring(0,siteHost.length-1);
                 }
-                Sfdc.canvas.byId('fullname').innerHTML = sr.context.user.fullName;
+                Sfdc.canvas.byId('bodyparse').innerHTML =  sr;
+                Sfdc.canvas.byId('fullname').innerHTML = JSON.parse('<%=signedRequestJson%>').context.user.fullName;
                 Sfdc.canvas.byId('profile').src = (photoUri.indexOf("http")==0 ? "" :siteHost) + photoUri;
-                Sfdc.canvas.byId('firstname').innerHTML = sr.context.user.firstName;
-                Sfdc.canvas.byId('lastname').innerHTML = sr.context.user.lastName;
-                Sfdc.canvas.byId('username').innerHTML = sr.context.user.userName;
-                Sfdc.canvas.byId('email').innerHTML = sr.context.user.email;
-                Sfdc.canvas.byId('company').innerHTML = sr.context.organization.name;
-
+                Sfdc.canvas.byId('firstname').innerHTML = JSON.parse('<%=signedRequestJson%>').context.user.firstName;
+                Sfdc.canvas.byId('lastname').innerHTML = JSON.parse('<%=signedRequestJson%>').context.user.lastName;
+                Sfdc.canvas.byId('username').innerHTML = JSON.parse('<%=signedRequestJson%>').context.user.userName;
+                Sfdc.canvas.byId('email').innerHTML = JSON.parse('<%=signedRequestJson%>').context.user.email;
+                Sfdc.canvas.byId('company').innerHTML = JSON.parse('<%=signedRequestJson%>').context.organization.name;
+                
                 chatterTalk.init(sr, "chatter-submit", "speech-input-field", function(data) {
                     Sfdc.canvas.byId('status').innerHTML = data.statusText;
                     Sfdc.canvas.byId("speech-input-field").value = "";
@@ -87,6 +88,7 @@ POSSIBILITY OF SUCH DAMAGE.
     <body>
     <div id="page">
         <div id="content">
+            <h1 > BODYPARSE <span id='bodyparse'></span>!</h1>
             <div id="header">
                 <h1 >Hello <span id='fullname'></span>!</h1>
                 <h2>Welcome to the Force.com Canvas Java Quick Start Template!</h2>
