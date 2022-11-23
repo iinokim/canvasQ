@@ -42,11 +42,14 @@ POSSIBILITY OF SUCH DAMAGE.
         Sfdc.canvas.client.resize(sr.client, {width : dim.widths.pageWidth + inc + "px"});
         displaySize();
     }
+    console.log("데이터뿌리기");
+    Sfdc.canvas.byId('bodyparsee').innerHTML =  sr;
+
 
 </script>
 <p>
-Force.com Canvas supports dynamic and automatic resizing so you can manage the size of the Canvas application yourself,
-or let Force.com Canvas do all the work.
+    <h1 > BODYPARSE <span id='bodyparsee'></span>!</h1>
+    
 </p> 
 <p>
 <a href="#" onclick="subscribe('canvas.resize');">Subscribe</a> to the resize event and see the resize event

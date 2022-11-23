@@ -90,7 +90,7 @@ POSSIBILITY OF SUCH DAMAGE.
         <div id="content">
             <h1 > BODYPARSE <span id='bodyparse'></span>!</h1>
             <div id="header">
-                <h1 >Hello <span id='fullname'></span>!</h1>
+                <h1 >Hello22 <span id='fullname'></span>!</h1>
                 <h2>Welcome to the Force.com Canvas Java Quick Start Template!</h2>
             </div>
 

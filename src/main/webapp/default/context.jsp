@@ -32,6 +32,10 @@ with a scoped authentication token to allow your application to communicate with
 Below is a sample of that information:
 </p>
 <table border="0" width="100%">
+  <tr>
+    <td width="30%"><b>First Name: </b></td>
+    <td><span id='firstname'>${canvasRequest.context.userContext.firstName}</span></td>
+  </tr>
     <tr>
       <td width="30%"><b>First Name: </b></td>
       <td><span id='firstname'>${canvasRequest.context.userContext.firstName}</span></td>
