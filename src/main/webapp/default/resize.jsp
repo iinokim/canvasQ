@@ -33,8 +33,6 @@ POSSIBILITY OF SUCH DAMAGE.
     function adjustHeight(inc) {
         console.log('==== adjustHeight ====');
         console.log(sr.client);
-        console.log(dim);
-        console.log(dim.heights);
         var dim = Sfdc.canvas.client.size(sr.client);
         console.log("Dim ", dim.heights.pageHeight);
         Sfdc.canvas.client.resize(sr.client, {height : dim.heights.pageHeight + inc + "px"});
@@ -43,8 +41,6 @@ POSSIBILITY OF SUCH DAMAGE.
     function adjustWidth(inc) {
         console.log('==== adjustWidth ====');
         console.log(sr.client);
-        console.log(dim);
-        console.log(dim.widths);
         var dim = Sfdc.canvas.client.size(sr.client);
         console.log("Dim ", dim.widths.pageWidth);
         Sfdc.canvas.client.resize(sr.client, {width : dim.widths.pageWidth + inc + "px"});
